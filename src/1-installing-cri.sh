@@ -19,7 +19,7 @@ for pkg in "${OLD_PACKAGES[@]}"; do
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             log "Removing package $pkg"
-            sudo apt-get remove -y $pkg
+            sudo apt-get remove -y "$pkg"
         fi
     fi
 done
@@ -34,7 +34,7 @@ REQUIRED_PACKAGES=(ca-certificates curl software-properties-common)
 for pkg in "${REQUIRED_PACKAGES[@]}"; do
     if ! dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "ok installed"; then
         log "Installing package $pkg"
-        sudo apt-get install -y $pkg
+        sudo apt-get install -y "$pkg"
     fi
 done
 
@@ -62,7 +62,7 @@ NEW_PACKAGES=(docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-
 for pkg in "${NEW_PACKAGES[@]}"; do
     if ! dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "ok installed"; then
         log "Installing package $pkg"
-        sudo apt-get install -y $pkg
+        sudo apt-get install -y "$pkg"
     fi
 done
 
