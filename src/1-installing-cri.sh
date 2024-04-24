@@ -2,6 +2,8 @@
 set -e
 
 # This script installs the Container Runtime Interface (CRI) on a Debian-based system.
+# Only tested on Ubuntu 22.04 LTS.
+# Use this script at your own risk. It is provided as-is without any guarantees.
 # It uses containerd and installs the Docker version of it.
 
 # Function to log messages with timestamps for better tracking
