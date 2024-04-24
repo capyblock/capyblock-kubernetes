@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 # This script installs the Container Runtime Interface (CRI) on a Debian-based system.
