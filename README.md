@@ -1,4 +1,4 @@
-# CapyBlock Kubernetes Installation
+# Kubernetes Installation
 
 This project provide a simple way to deploy Kubernetes cluster. This project is provided by CapyBlock team, and it is
 based on [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
@@ -20,13 +20,13 @@ Linux distributions. Use at your own risk.
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/capyblock/capyblock-kubernetes.git
+git clone https://github.com/capyblock/kubernetes.git
 ```
 
 2. Change directory to the cloned repository.
 
 ```bash
-cd capyblock-kubernetes
+cd kubernetes
 ```
 
 3. Run the installation script.
@@ -54,7 +54,7 @@ kubectl get nodes
 3. After the uninstallation is complete, you can remove the cloned repository.
 
 ```bash
-rm -rf capyblock-kubernetes
+rm -rf kubernetes
 ```
 
 ## License
