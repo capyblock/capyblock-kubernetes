@@ -20,13 +20,13 @@ Linux distributions. Use at your own risk.
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/soliyte/kubernetes.git
+git clone https://github.com/soliyte/kubernetes-installer.git
 ```
 
 2. Change directory to the cloned repository, and go to `src` directory.
 
 ```bash
-cd kubernetes/src
+cd kubernetes-installer/src
 ```
 
 3. Make the installation script executable.
@@ -66,7 +66,7 @@ chmod +x uninstall.sh
 4. After the uninstallation is complete, you can remove the cloned repository.
 
 ```bash
-rm -rf kubernetes
+rm -rf kubernetes-installer
 ```
 
 ## License
