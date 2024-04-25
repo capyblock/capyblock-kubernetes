@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-# run cri_selector and get output in a variable
 install(){
   prepare_installation
   
-  local install_cri
+  local INSTALL_CRI_FUNC
   # shellcheck disable=SC2034
-  install_cri=$(cri_selector)
-  install_cri
+  INSTALL_CRI_FUNC=$(cri_selector)
+  eval "$INSTALL_CRI_FUNC"
   
   install_kubeadm
   
