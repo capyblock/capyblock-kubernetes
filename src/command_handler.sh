@@ -4,6 +4,7 @@
 help
 
 while true; do
-    read -rp "Enter command: " command
-    $command
+    # shellcheck disable=SC2034
+    COMMAND=$(ask_command)
+    eval "$COMMAND"
 done
