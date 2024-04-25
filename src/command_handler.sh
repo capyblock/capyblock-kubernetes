@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # shellcheck disable=SC2154
-$help
+help
 
 while true; do
     read -rp "Enter command: " command
