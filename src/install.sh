@@ -27,7 +27,7 @@ for script in "$INSTALL_DIR"/*.sh; do
     # Check if the file is readable
     if [ -r "$script" ]; then
         log "Running $script"
-        if bash "$script" "$START_DATE" "$LOG_DIR"; then
+        if bash "$script" "$START_DATE" "$LOG_DIR" >> "$LOG_FILE" 2>&1; then
             log "$script completed successfully"
         else
             log "Error: $script failed"
