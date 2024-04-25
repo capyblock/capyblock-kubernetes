@@ -23,11 +23,6 @@ LOG_DIR=$2
 # Log file
 LOG_FILE="$LOG_DIR/$SCRIPT_NAME-$START_DATE.log"
 
-# Check if the START_DATE is set
-if [ -z "$START_DATE" ]; then
-    START_DATE=$(date '+%Y-%m-%d_%H-%M-%S')
-fi
-
 # Uninstall old versions of Docker and related packages
 # This is to ensure that there are no conflicts with the new installation
 OLD_PACKAGES=(docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc)
