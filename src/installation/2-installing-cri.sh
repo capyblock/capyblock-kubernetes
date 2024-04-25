@@ -6,13 +6,13 @@ set -e
 # Use this script at your own risk. It is provided as-is without any guarantees.
 # It uses containerd and installs the Docker version of it.
 
-# Function to log messages with timestamps for better tracking
-log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$(SCRIPT_NAME)] - $1" | tee -a "$LOG_FILE"
-}
-
 # Get script name
 SCRIPT_NAME=$(basename "$0")
+
+# Function to log messages with timestamps for better tracking
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$SCRIPT_NAME] [INFO] - $1" | tee -a "$LOG_FILE"
+}
 
 # Get current date and time from the first argument
 START_DATE=$1
