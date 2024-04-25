@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # run cri_selector and get output in a variable
-install_kubernetes(){
+install(){
   prepare_installation
   
   local install_cri
