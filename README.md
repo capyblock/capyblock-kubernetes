@@ -23,20 +23,26 @@ Linux distributions. Use at your own risk.
 git clone https://github.com/capyblock/kubernetes.git
 ```
 
-2. Change directory to the cloned repository.
+2. Change directory to the cloned repository, and go to `src` directory.
 
 ```bash
-cd kubernetes
+cd kubernetes/src
 ```
 
-3. Run the installation script.
+3. Make the installation script executable.
+
+```bash
+chmod +x install.sh
+```
+
+4. Run the installation script.
 
 ```bash
 ./install.sh
 ```
 
-4. Follow the instructions on the screen.
-5. After the installation is complete, you can access the Kubernetes cluster using `kubectl`.
+5. Follow the instructions on the screen.
+6. After the installation is complete, you can access the Kubernetes cluster using `kubectl`.
 
 ```bash
 kubectl get nodes
@@ -44,14 +50,20 @@ kubectl get nodes
 
 ## Uninstallation
 
-1. Run the uninstallation script.
+1. Make the uninstallation script executable.
+
+```bash
+chmod +x uninstall.sh
+```
+
+2. Run the uninstallation script.
 
 ```bash
 ./uninstall.sh
 ```
 
-2. Follow the instructions on the screen.
-3. After the uninstallation is complete, you can remove the cloned repository.
+3. Follow the instructions on the screen.
+4. After the uninstallation is complete, you can remove the cloned repository.
 
 ```bash
 rm -rf kubernetes
