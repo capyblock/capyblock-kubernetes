@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+# Function to log messages with timestamps for better tracking
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1"
+}
+
 # Directory containing the installation scripts
 INSTALL_DIR="installation"
 
@@ -8,17 +13,20 @@ INSTALL_DIR="installation"
 for script in "$INSTALL_DIR"/*.sh; do
     # Check if the file is readable
     if [ -r "$script" ]; then
-        echo "Running $script"
+        log "Running $script"
         if bash "$script"; then
-            echo "$script completed successfully"
+            log "$script completed successfully"
         else
-            echo "Error: $script failed"
+            log "Error: $script failed"
             exit 1
         fi
     else
-        echo "Error: Cannot read $script"
+        log "Error: Cannot read $script"
         exit 1
     fi
 done
 
-echo "Installation completed successfully"
+log "Installation completed successfully"
+
+# Return success status
+exit 0
