@@ -68,8 +68,5 @@ for pkg in "${NEW_PACKAGES[@]}"; do
     fi
 done
 
-# Log a success message to indicate that the script has completed successfully
-log "Script completed successfully"
-
 # Return success status
 exit 0
