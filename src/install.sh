@@ -7,14 +7,17 @@ log() {
 }
 
 # Get current date and time
-CURRENT_DATE=$(date '+%Y-%m-%d_%H-%M-%S')
+START_DATE=$(date '+%Y-%m-%d_%H-%M-%S')
+
+# Get directory of the script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Create a directory to store the logs
-LOG_DIR="logs"
+LOG_DIR="$DIR/logs"
 mkdir -p "$LOG_DIR"
 
 # Log file
-LOG_FILE="$LOG_DIR/install-$CURRENT_DATE.log"
+LOG_FILE="$LOG_DIR/install-$START_DATE.log"
 
 # Directory containing the installation scripts
 INSTALL_DIR="installation"
@@ -24,7 +27,7 @@ for script in "$INSTALL_DIR"/*.sh; do
     # Check if the file is readable
     if [ -r "$script" ]; then
         log "Running $script" | tee -a "$LOG_FILE"
-        if bash "$script"; then
+        if bash "$script" "$START_DATE" "$LOG_DIR"; then
             log "$script completed successfully" | tee -a "$LOG_FILE"
         else
             log "Error: $script failed" | tee -a "$LOG_FILE"
