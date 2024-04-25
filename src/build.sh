@@ -11,6 +11,7 @@ echo "#!/usr/bin/env bash" > "$BUILD_FULL_FILE"
 VARIABLES_DIR="variables"
 FUNCTIONS_DIR="functions"
 BUILD_BLOCKS_DIR="build_blocks"
+WORKFLOWS_DIR="workflows"
 
 read_script(){
     # Check if the file is readable
