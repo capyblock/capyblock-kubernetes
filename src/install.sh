@@ -3,7 +3,7 @@ set -e
 
 # Function to log messages with timestamps for better tracking
 log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] - $1" | tee -a "$LOG_FILE"
 }
 
 # Get current date and time
