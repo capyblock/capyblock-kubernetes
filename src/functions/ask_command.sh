@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 ask_command(){
-    read -rp "Enter your choice: " COMMAND
+    read -rp "Command: " COMMAND
     echo "$COMMAND"
 }
