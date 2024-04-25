@@ -23,18 +23,23 @@ read_script(){
     fi
 }
 
-# Read all data from the variables files and add to build file
+# Read all data from the variable files and add to build file
 for script in "$VARIABLES_DIR"/*.sh; do
     read_script "$script"
 done
 
-# Read all data from the functions files and add to build file
+# Read all data from the function files and add to build file
 for script in "$FUNCTIONS_DIR"/*.sh; do
     read_script "$script"
 done
 
-# Read all data from the build blocks files and add to build file
+# Read all data from the build block files and add to build file
 for script in "$BUILD_BLOCKS_DIR"/*.sh; do
+    read_script "$script"
+done
+
+# Read all data from the workflow files and add to build file
+for script in "$WORKFLOWS_DIR"/*.sh; do
     read_script "$script"
 done
 
