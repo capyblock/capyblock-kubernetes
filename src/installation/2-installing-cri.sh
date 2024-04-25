@@ -52,6 +52,18 @@ for pkg in "${REQUIRED_PACKAGES[@]}"; do
     fi
 done
 
+# Configure required sysctl settings for containerd
+# These settings are necessary for containerd to work properly with Kubernetes
+log "Configuring sysctl settings for containerd"
+echo "net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1" | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+
+# Apply the sysctl settings
+log "Applying sysctl settings"
+sudo sysctl --system
+
+
 # Add Docker's official GPG key for secure package download
 log "Adding Docker's official GPG key"
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -79,6 +91,21 @@ for pkg in "${NEW_PACKAGES[@]}"; do
         sudo apt-get install -y "$pkg"
     fi
 done
+
+# Mark the Docker packages on hold to prevent automatic updates
+log "Marking Docker packages on hold"
+sudo apt-mark hold docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Create a containerd configuration file
+# This file is used to configure containerd with the necessary settings for Kubernetes
+log "Creating containerd configuration file"
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+# Set containerd cgroup driver to systemd
+# This is required for Kubernetes to work properly with containerd
+log "Setting containerd cgroup driver to systemd"
+sudo sed -i 's/            SystemdCgroup = false/            SystemdCgroup = true/' /etc/containerd/config.toml
 
 # Return success status
 exit 0
