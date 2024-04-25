@@ -11,6 +11,7 @@ echo "#!/usr/bin/env bash" > "$BUILD_FULL_FILE"
 VARIABLES_DIR="variables"
 FUNCTIONS_DIR="functions"
 BUILD_BLOCKS_DIR="build_blocks"
+SELECTORS_DIR="selectors"
 WORKFLOWS_DIR="workflows"
 
 read_script(){
@@ -36,6 +37,11 @@ done
 
 # Read all data from the build block files and add to build file
 for script in "$BUILD_BLOCKS_DIR"/*.sh; do
+    read_script "$script"
+done
+
+# Read all data from the selector files and add to build file
+for script in "$SELECTORS_DIR"/*.sh; do
     read_script "$script"
 done
 
