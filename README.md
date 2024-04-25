@@ -1,4 +1,4 @@
-# Kubernetes Installation
+# Kubernetes Installer
 
 This project provide a simple way to deploy Kubernetes cluster. This project is provided by Soliyte team, and it is
 based on [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
