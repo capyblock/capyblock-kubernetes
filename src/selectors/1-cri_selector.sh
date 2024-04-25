@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 
+print_cri_list(){
+    echo "1. Containerd (Recommended)"
+    echo "2. CRI-O (NOT IMPLEMENTED YET)"
+    echo "3. Docker (NOT IMPLEMENTED YET)"
+    echo "4. Mirantis Container Runtime (NOT IMPLEMENTED YET)"
+}
+
 cri_selector(){
-    local cri
+    local SELECTED_CRI
     
-    cri=$(dialog --clear --stdout \
-        --title "Container Runtime Interface" \
-        --menu "Choose the container runtime interface:" 0 0 0 \
-        "1" "Containerd (Recommended)" \
-        "2" "CRI-O (NOT IMPLEMENTED YET)" \
-        "3" "Docker (NOT IMPLEMENTED YET)" \
-        "4" "Mirantis Container Runtime (NOT IMPLEMENTED YET)" \
-    )
+    # run print_cri_list function
+    print_cri_list
     
-    case $cri in
+    SELECTED_CRI=ask "Choose the container runtime interface:" "1"
+    
+    case $SELECTED_CRI in
         1) echo "install_cri_containerd" ;;
         2) echo "install_cri_cri-o" ;;
         3) echo "install_cri_docker" ;;
