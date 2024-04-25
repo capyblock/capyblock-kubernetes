@@ -3,7 +3,7 @@ set -e
 
 # Function to log messages with timestamps for better tracking
 log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
 }
 
 # Get current date and time
@@ -26,20 +26,20 @@ INSTALL_DIR="installation"
 for script in "$INSTALL_DIR"/*.sh; do
     # Check if the file is readable
     if [ -r "$script" ]; then
-        log "Running $script" | tee -a "$LOG_FILE"
+        log "Running $script"
         if bash "$script" "$START_DATE" "$LOG_DIR"; then
-            log "$script completed successfully" | tee -a "$LOG_FILE"
+            log "$script completed successfully"
         else
-            log "Error: $script failed" | tee -a "$LOG_FILE"
+            log "Error: $script failed"
             exit 1
         fi
     else
-        log "Error: Cannot read $script" | tee -a "$LOG_FILE"
+        log "Error: Cannot read $script"
         exit 1
     fi
 done
 
-log "Installation completed successfully" | tee -a "$LOG_FILE"
+log "Installation completed successfully"
 
 # Return success status
 exit 0

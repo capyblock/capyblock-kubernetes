@@ -8,7 +8,7 @@ set -e
 
 # Function to log messages with timestamps for better tracking
 log() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
 }
 
 # Get script name
@@ -37,14 +37,14 @@ for pkg in "${OLD_PACKAGES[@]}"; do
         read -p "Package $pkg is installed. Do you want to remove it? (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            log "Removing package $pkg" | tee -a "$LOG_FILE"
+            log "Removing package $pkg"
             sudo apt-get remove -y "$pkg"
         fi
     fi
 done
 
 # Update the package list to get the latest versions of all packages
-log "Updating the package list" | tee -a "$LOG_FILE"
+log "Updating the package list"
 sudo apt-get update
 
 # Install the required packages for Docker and containerd
@@ -52,27 +52,27 @@ sudo apt-get update
 REQUIRED_PACKAGES=(ca-certificates curl software-properties-common)
 for pkg in "${REQUIRED_PACKAGES[@]}"; do
     if ! dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "ok installed"; then
-        log "Installing package $pkg" | tee -a "$LOG_FILE"
+        log "Installing package $pkg"
         sudo apt-get install -y "$pkg"
     fi
 done
 
 # Add Docker's official GPG key for secure package download
-log "Adding Docker's official GPG key" | tee -a "$LOG_FILE"
+log "Adding Docker's official GPG key"
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
 # Add Docker's repository to the system's package sources
 # This allows us to install Docker and related packages directly from Docker's official repository
-log "Adding Docker's repository" | tee -a "$LOG_FILE"
+log "Adding Docker's repository"
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Update the package list again to include packages from Docker's repository
-log "Updating the package list" | tee -a "$LOG_FILE"
+log "Updating the package list"
 sudo apt-get update
 
 # Install the Docker packages
@@ -80,7 +80,7 @@ sudo apt-get update
 NEW_PACKAGES=(docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin)
 for pkg in "${NEW_PACKAGES[@]}"; do
     if ! dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "ok installed"; then
-        log "Installing package $pkg" | tee -a "$LOG_FILE"
+        log "Installing package $pkg"
         sudo apt-get install -y "$pkg"
     fi
 done
