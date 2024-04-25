@@ -13,7 +13,7 @@ cri_selector(){
     # run print_cri_list function
     print_cri_list
     
-    SELECTED_CRI=ask "Choose the container runtime interface:" "1"
+    SELECTED_CRI=$(ask_selection)
     
     case $SELECTED_CRI in
         1) echo "install_cri_containerd" ;;
