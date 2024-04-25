@@ -5,12 +5,15 @@ set -e
 # Only tested on Ubuntu 22.04 LTS.
 # Use this script at your own risk. It is provided as-is without any guarantees.
 
-# Get script name
-SCRIPT_NAME=$(basename "$0")
+# Calculate current terminal how many '-' characters can be displayed
+# This is used to display a separator line in the log file
+TERMINAL_WIDTH=$(tput cols)
 
 # Function to log messages with timestamps for better tracking
 log() {
+    printf "%${TERMINAL_WIDTH}s\n" | tr ' ' '-' | tee -a "$LOG_FILE"
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$SCRIPT_NAME] [INFO] - $1" | tee -a "$LOG_FILE"
+    printf "%${TERMINAL_WIDTH}s\n" | tr ' ' '-' | tee -a "$LOG_FILE"
 }
 
 # Get current date and time from the first argument
