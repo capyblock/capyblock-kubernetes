@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
+# Calculate current terminal how many '-' characters can be displayed
+# This is used to display a separator line in the log file
+TERMINAL_WIDTH=$(tput cols)
+
 # Function to log messages with timestamps for better tracking
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [INFO] - $1" | tee -a "$LOG_FILE"
+    printf "%${TERMINAL_WIDTH}s\n" | tr ' ' '-' | tee -a "$LOG_FILE"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [MAIN] [INFO] - $1" | tee -a "$LOG_FILE"
+    printf "%${TERMINAL_WIDTH}s\n" | tr ' ' '-' | tee -a "$LOG_FILE"
 }
 
 # Get current date and time
