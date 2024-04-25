@@ -1,3 +1,7 @@
+# JetBrains Folders
 .fleet
 .rider
 .idea
+
+temp/
+logs/
