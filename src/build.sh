@@ -3,7 +3,7 @@ set -e
 
 BUILD_DIR="../build"
 mkdir -p "$BUILD_DIR"
-BUILD_FULL_FILE="$BUILD_DIR/kubernetes-installer.sh"
+BUILD_FULL_FILE="$BUILD_DIR/kubernetes_installer.sh"
 
 # Add #!/usr/bin/env bash to the build file
 echo "#!/usr/bin/env bash" > "$BUILD_FULL_FILE"
