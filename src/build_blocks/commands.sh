@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC2034
-COMMANDS=(
-    "install"
-    "uninstall"
-    "help"
-)
-  
 help(){
     echo "Commands:"
     echo "  install   Install Kubernetes"
