@@ -7,4 +7,5 @@ while true; do
     # shellcheck disable=SC2034
     ask_command
     eval "$COMMAND"
+    unset COMMAND
 done
