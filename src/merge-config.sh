@@ -12,6 +12,7 @@ SCRIPT_DIRECTORIES=(
   "functions"
   "build_blocks"
   "selectors"
+  "modules"
   "workflows"
   "main"
 )
