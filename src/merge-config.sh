@@ -13,4 +13,5 @@ SCRIPT_DIRECTORIES=(
   "build_blocks"
   "selectors"
   "workflows"
+  "main"
 )
