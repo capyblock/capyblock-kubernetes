@@ -7,19 +7,22 @@ print_cri_list(){
     echo "4. Mirantis Container Runtime (NOT IMPLEMENTED YET)"
 }
 
-cri_selector(){
-    local SELECTED_CRI
-    
+cri_selector(){    
     # run print_cri_list function
     print_cri_list
     
-    SELECTED_CRI=$(ask_selection)
+    ask_selection
     
-    case $SELECTED_CRI in
-        1) echo "install_cri_containerd" ;;
-        2) echo "install_cri_cri-o" ;;
-        3) echo "install_cri_docker" ;;
-        4) echo "install_mirantis_cri" ;;
-        *) echo "install_cri_containerd" ;;
+    # shellcheck disable=SC2034
+    CRI_SELECTION=$SELECTION
+    
+    unset SELECTION
+    
+    case $CRI_SELECTION in
+        1) CRI_SELECTION="install_cri_containerd" ;;
+        2) CRI_SELECTION="install_cri_cri-o" ;;
+        3) CRI_SELECTION="install_cri_docker" ;;
+        4) CRI_SELECTION="install_mirantis_cri" ;;
+        *) CRI_SELECTION="install_cri_containerd" ;;
     esac
 }
