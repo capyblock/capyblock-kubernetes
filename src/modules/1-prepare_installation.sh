@@ -5,7 +5,8 @@ prepare_installation(){
   SCRIPT_NAME="Prepare Installation"
   
   log "Updating the package list"
-  
+  sudo apt-get update
   
   log "Upgrading installed packages"
+  sudo apt-get upgrade -y
 }
