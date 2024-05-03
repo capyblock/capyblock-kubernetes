@@ -5,6 +5,6 @@ help
 
 while true; do
     # shellcheck disable=SC2034
-    COMMAND=$(ask_command)
+    ask_command
     eval "$COMMAND"
 done
