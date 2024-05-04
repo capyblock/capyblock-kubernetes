@@ -4,8 +4,7 @@ install_kubeadm(){
   # shellcheck disable=SC2034
   SCRIPT_NAME="Install Kubeadm"
   
-  log "Updating the package list"
-  sudo apt-get update
+  function_update_packages
   
   local REQUIRED_PACKAGES=(apt-transport-https ca-certificates curl gpg)
   log "Installing the required packages for kubeadm"
@@ -22,8 +21,7 @@ install_kubeadm(){
   log "Adding Kubernetes repository to package sources"
   echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-  log "Updating the package list"
-  sudo apt-get update
+  function_update_packages
 
   log "Installing kubeadm packages"
   sudo apt-get install -y kubeadm kubelet kubectl
