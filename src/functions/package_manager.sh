@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-prepare_installation(){
-  # shellcheck disable=SC2034
-  SCRIPT_NAME="Prepare Installation"
-  
+function_update_packages(){
   log "Updating the package list"
   sudo apt-get update
-  
+}
+
+function_upgrade_packages(){
   log "Upgrading installed packages"
   sudo apt-get upgrade -y
 }
