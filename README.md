@@ -1,6 +1,6 @@
-# Kubernetes Installation
+# Kubernetes Installer
 
-This project provide a simple way to deploy Kubernetes cluster. This project is provided by CapyBlock team, and it is
+This project provide a simple way to deploy Kubernetes cluster. This project is provided by Soliyte team, and it is
 based on [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
 
 This project is only tested on Ubuntu 22.04 LTS, and it is not guaranteed to work on other versions of Ubuntu or other
@@ -20,13 +20,13 @@ Linux distributions. Use at your own risk.
 1. Clone this repository to your local machine.
 
 ```bash
-git clone https://github.com/capyblock/kubernetes.git
+git clone https://github.com/soliyte/kubernetes-installer.git
 ```
 
 2. Change directory to the cloned repository, and go to `src` directory.
 
 ```bash
-cd kubernetes/src
+cd kubernetes-installer/src
 ```
 
 3. Make the installation script executable.
@@ -66,7 +66,7 @@ chmod +x uninstall.sh
 4. After the uninstallation is complete, you can remove the cloned repository.
 
 ```bash
-rm -rf kubernetes
+rm -rf kubernetes-installer
 ```
 
 ## License
