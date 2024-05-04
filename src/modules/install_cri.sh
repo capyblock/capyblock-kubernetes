@@ -4,6 +4,9 @@ install_cri_containerd(){
   # shellcheck disable=SC2034
   SCRIPT_NAME="Install Containerd"
   
+  function_update_packages
+  function_upgrade_packages
+  
   local OLD_PACKAGES=(docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc)
   
   log "Uninstalling old versions of Docker and related packages"
@@ -19,8 +22,7 @@ install_cri_containerd(){
       fi
   done
   
-  log "Updating the package list"
-  sudo apt-get update
+  function_update_packages
   
   local REQUIRED_PACKAGES=(ca-certificates curl software-properties-common)
   log "Installing the required packages for Docker and containerd"
@@ -50,8 +52,7 @@ install_cri_containerd(){
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   
-  log "Updating the package list"
-  sudo apt-get update
+  function_update_packages
   
   log "Installing Docker and containerd"
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io
