@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install(){
+workflow_install(){
   prepare_installation
   
   cri_selector

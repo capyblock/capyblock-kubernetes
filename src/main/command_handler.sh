@@ -6,6 +6,21 @@ help
 while true; do
     # shellcheck disable=SC2034
     ask_command
-    eval "$COMMAND"
+    
+    case $COMMAND in
+        install) 
+            workflow_install
+            ;;
+        uninstall)
+            workflow_uninstall
+            ;;
+        help)
+            workflow_help
+            ;;
+        *)
+            echo "Invalid command"
+            ;;
+    esac
+    
     unset COMMAND
 done
